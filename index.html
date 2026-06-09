@@ -1,0 +1,2373 @@
+<!DOCTYPE html>
+<!-- v3 build final -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Howe Marine — Indian River, Michigan</title>
+<link rel="preload" as="image" href="images/src_101.jpg">
+<link rel="preload" as="image" href="images/src_102.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:"Open Sans",sans-serif;color:#1c2b3a;background:#fff;-webkit-font-smoothing:antialiased}
+img{display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ─── DESIGN TOKENS ─── */
+:root{
+  --navy:#0b2545; --navy2:#0d2f5a;
+  --red:#bf1f1f;  --red2:#a01a1a;
+  --gold:#b8892a;
+  --white:#fff;   --off:#f4f6f9;
+  --border:#dde2ea;
+  --text:#1c2b3a; --muted:#57656f;
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:#fff;border-bottom:4px solid #111;
+  box-shadow:0 2px 12px rgba(0,0,0,.08);height:72px;
+  display:flex;align-items:center;
+}
+.nav-inner{
+  width:100%;max-width:1280px;margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.logo{cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:14px}
+.logo img{height:46px;width:auto;display:block}
+.logo-tagline{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;border-left:1px solid var(--border);padding-left:14px;line-height:1.6}
+.nav-menu{display:flex;list-style:none;height:72px}
+.nav-menu li a{
+  display:flex;align-items:center;height:72px;padding:0 14px;
+  font-family:"Oswald",sans-serif;font-size:.86rem;font-weight:500;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  border-bottom:4px solid transparent;margin-bottom:-4px;
+  transition:color .15s;cursor:pointer;
+}
+.nav-menu li a:hover{color:var(--navy)}
+.nav-menu li a.on{color:var(--red);border-bottom-color:var(--red)}
+.nav-cta{
+  font-family:"Oswald",sans-serif;font-size:.82rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--red);color:#fff;padding:10px 22px;
+  transition:background .15s;flex-shrink:0;
+}
+.nav-cta:hover{background:var(--red2)}
+.burger{display:none;font-size:1.4rem;color:var(--navy);padding:8px}
+.mob-menu{
+  display:none;position:fixed;top:72px;left:0;right:0;z-index:998;
+  background:#fff;border-bottom:4px solid #111;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);flex-direction:column;
+}
+.mob-menu.open{display:flex}
+.mob-menu a{
+  padding:14px 24px;font-family:"Oswald",sans-serif;font-size:.9rem;
+  font-weight:500;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--navy);border-bottom:1px solid var(--border);cursor:pointer;
+}
+
+/* ─── PAGES ─── */
+.pg{display:none;padding-top:72px;min-height:100vh}
+.pg.on{display:block}
+
+/* ─── SHARED LAYOUT ─── */
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.sec{padding:64px 0}
+.sec.sm{padding:44px 0}
+.sec.bg-off{background:var(--off)}
+.sec.bg-navy{background:var(--navy)}
+.sec.bordered{border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+/* ─── TYPOGRAPHY ─── */
+.label{
+  display:inline-block;font-family:"Oswald",sans-serif;font-size:.65rem;
+  font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);border-bottom:2px solid var(--red);padding-bottom:3px;
+}
+.label.gold{color:var(--gold);border-color:var(--gold)}
+.label.lt{color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.25)}
+.sec-h{font-family:"Oswald",sans-serif;font-size:clamp(1.7rem,2.6vw,2.5rem);font-weight:700;color:var(--navy);letter-spacing:.02em;line-height:1.08}
+.sec-h.wh{color:#fff}
+.sec-sub{font-size:.93rem;line-height:1.78;color:var(--muted);font-weight:300;max-width:580px;margin-top:8px}
+.sec-sub.lt{color:rgba(255,255,255,.5)}
+.body{font-size:.93rem;line-height:1.8;color:var(--muted);font-weight:300}
+
+/* ─── BUTTONS ─── */
+.btn{
+  display:inline-block;font-family:"Oswald",sans-serif;font-size:.8rem;
+  font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:12px 26px;transition:all .15s;white-space:nowrap;
+}
+.btn.red{background:var(--red);color:#fff}.btn.red:hover{background:var(--red2)}
+.btn.navy{background:var(--navy);color:#fff}.btn.navy:hover{background:var(--navy2)}
+.btn.white{background:#fff;color:var(--red)}.btn.white:hover{background:var(--navy);color:#fff}
+.btn.outline-w{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6)}.btn.outline-w:hover{background:#fff;color:var(--navy)}
+.btn.outline{background:transparent;color:var(--navy);border:2px solid var(--navy)}.btn.outline:hover{background:var(--navy);color:#fff}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════
+   HOME HERO
+   The hero photo fills the screen.
+   Text lives in a 100% opaque navy bar
+   pinned to the bottom — it does NOT float
+   on top of the landscape area of the photo.
+═══════════════════════════════════════════ */
+.hero{width:100%;background:var(--navy);position:relative}
+.hero-slides{width:100%;overflow:hidden;position:relative}
+.hero-slide{display:block;width:100%;position:absolute;top:0;left:0;right:0;opacity:0;transition:opacity 0.6s ease;pointer-events:none}
+.hero-slide.on{opacity:1;position:relative;pointer-events:auto}
+.hero-slide img{width:100%;height:auto;display:block;margin:0;padding:0}
+.hero-dots{position:absolute;top:16px;right:28px;z-index:3;display:flex;gap:7px}
+.hdot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.55);cursor:pointer;transition:all .2s}
+.hdot.on{background:var(--gold);border-color:var(--gold)}
+/* The text bar: a solid, fully-opaque panel.
+   It is NOT a position:absolute overlay on the photo.
+   It is a flex child BELOW the photo. */
+.hero-bar{
+  background:var(--navy);flex-shrink:0;
+  padding:20px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  flex-wrap:nowrap;
+  border-top:4px solid #111;
+}
+.hero-bar-left{}
+.hero-bar-tag{font-family:"Oswald",sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.hero-bar h1{font-family:"Oswald",sans-serif;font-size:clamp(1.2rem,2vw,1.8rem);font-weight:700;color:#fff;letter-spacing:.02em;line-height:1.08}
+.hero-bar p{font-size:.83rem;color:rgba(255,255,255,.6);margin-top:4px;max-width:480px;font-weight:300;line-height:1.55}
+.hero-bar-right{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+
+
+
+/* ═══════════════════════════════════════════
+   SERVICE TILES — Jack's Marina style.
+   Each tile: photo on top in its own box,
+   text in a white panel below.
+   Zero overlap.
+═══════════════════════════════════════════ */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
+.tile{
+  cursor:pointer;overflow:hidden;
+  display:flex;flex-direction:column;
+  border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  transition:box-shadow .2s;
+}
+.tile:hover{box-shadow:0 4px 24px rgba(0,0,0,.1);z-index:1}
+.tile:nth-child(3n){border-right:none}
+/* Photo — its own contained element */
+.tile-photo{
+  width:100%;height:185px;overflow:hidden;flex-shrink:0;
+}
+.tile-photo img{width:100%;height:185px;display:block;transition:transform .45s ease}
+.tile:hover .tile-photo img{transform:scale(1.05)}
+/* Text panel — completely separate from the photo */
+.tile-text{
+  background:#fff;padding:18px 20px;flex:1;
+  display:flex;flex-direction:column;gap:5px;
+  border-top:3px solid transparent;transition:border-color .2s;
+}
+.tile:hover .tile-text{border-top-color:#333}
+.tile-category{font-family:"Oswald",sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.tile-name{font-family:"Oswald",sans-serif;font-size:1.05rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--navy)}
+.tile-link{font-family:"Oswald",sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:auto;padding-top:7px}
+
+/* ─── ABOUT BLOCK ─── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr}
+.about-photo{overflow:hidden;height:460px}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+.about-text{background:var(--navy);padding:60px 48px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.about-text h2{font-family:"Oswald",sans-serif;font-size:clamp(1.6rem,2.4vw,2.3rem);font-weight:700;color:#fff;line-height:1.1}
+.about-text p{font-size:.92rem;line-height:1.8;color:rgba(255,255,255,.55);font-weight:300}
+
+/* ─── WHY STRIP ─── */
+.why-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border)}
+.why-item{padding:34px 22px;text-align:center;border-right:1px solid var(--border)}
+.why-item:last-child{border-right:none}
+.why-icon{font-size:2rem;margin-bottom:11px}
+.why-item h3{font-family:"Oswald",sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--navy);margin-bottom:7px}
+.why-item p{font-size:.83rem;line-height:1.7;color:var(--muted)}
+
+/* ─── BRANDS ─── */
+.brands-bar{background:var(--off);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:22px 32px;text-align:center}
+.brands-label{font-family:"Oswald",sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.brands-list{display:flex;justify-content:center;flex-wrap:wrap;gap:7px}
+.brand{font-family:"Oswald",sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.06em;color:var(--navy);border:1px solid var(--border);padding:6px 13px;background:#fff}
+
+/* ─── AD STRIP ─── */
+.ad-strip{display:grid;grid-template-columns:340px 1fr}
+.ad-photo{overflow:hidden}
+.ad-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.ad-text{background:var(--navy);padding:52px 48px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.ad-text h2{font-family:"Oswald",sans-serif;font-size:clamp(1.5rem,2.2vw,2.1rem);font-weight:700;color:#fff;line-height:1.1}
+.ad-text p{font-size:.9rem;line-height:1.8;color:rgba(255,255,255,.5);font-weight:300}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-family:"Oswald",sans-serif;font-size:.67rem;font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.14);padding:5px 11px}
+
+/* ─── CTA BANNER ─── */
+.cta-bar{background:var(--red);padding:42px 32px}
+.cta-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.cta-bar h2{font-family:"Oswald",sans-serif;font-size:clamp(1.4rem,2vw,2rem);font-weight:700;color:#fff}
+.cta-bar p{font-size:.88rem;color:rgba(255,255,255,.68);margin-top:4px}
+
+/* ═══════════════════════════════════════════
+   INNER PAGE HEADER
+   Rule: the photo is a standalone full-width
+   image. No text. No overlay. Nothing on it.
+
+   The page title lives in a completely
+   separate white section below with a
+   left-border accent and clear typography.
+═══════════════════════════════════════════ */
+.pg-img{
+  width:100%;overflow:hidden;
+  border-bottom:4px solid #111;
+}
+.pg-img img{width:100%;height:340px;object-fit:cover;object-position:center 35%;display:block}
+/* Title section: pure white, totally independent of the photo */
+.pg-masthead{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  padding:0;
+}
+.pg-masthead-inner{
+  max-width:1280px;margin:0 auto;padding:32px 32px;
+  display:grid;grid-template-columns:auto 1fr;
+  gap:0;align-items:stretch;
+}
+/* Left column: red accent bar + page title */
+.pg-masthead-title{
+  padding-right:36px;
+  border-right:3px solid #111;
+  display:flex;flex-direction:column;justify-content:center;
+  min-width:280px;
+}
+.pg-masthead-title .label{margin-bottom:8px}
+.pg-masthead-title h1{
+  font-family:"Oswald",sans-serif;
+  font-size:clamp(1.8rem,2.8vw,2.6rem);
+  font-weight:700;color:var(--navy);
+  letter-spacing:.02em;line-height:1.05;
+}
+/* Right column: description text */
+.pg-masthead-desc{
+  padding-left:36px;
+  display:flex;align-items:center;
+}
+.pg-masthead-desc p{
+  font-size:.95rem;line-height:1.8;color:var(--muted);
+  font-weight:300;max-width:600px;
+}
+
+/* ─── SERVICE CARDS ─── */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.svc-card{background:#fff;padding:28px 24px;border-bottom:3px solid transparent;transition:border-color .18s,background .18s}
+.svc-card:hover{border-bottom-color:var(--red);background:var(--off)}
+.svc-num{font-family:"Oswald",sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.14em;color:var(--gold);margin-bottom:11px}
+.svc-name{font-family:"Oswald",sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);margin-bottom:7px}
+.svc-desc{font-size:.84rem;line-height:1.75;color:var(--muted)}
+
+/* ─── TWO COL ─── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+
+/* ─── RENTAL CARDS ─── */
+.rental-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rcard{border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s}
+.rcard:hover{box-shadow:0 6px 22px rgba(0,0,0,.09)}
+.rcard-img{height:190px;overflow:hidden}
+.rcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.rcard:hover .rcard-img img{transform:scale(1.04)}
+.rcard-body{padding:18px 17px}
+.rcard-name{font-family:"Oswald",sans-serif;font-size:.98rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);margin-bottom:7px}
+.rcard-desc{font-size:.84rem;line-height:1.7;color:var(--muted)}
+
+/* ─── CONTACT ─── */
+.info-list{list-style:none}
+.i-row{display:flex;gap:13px;padding:10px 0;border-bottom:1px solid var(--border)}
+.i-key{font-family:"Oswald",sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);width:76px;flex-shrink:0;padding-top:2px}
+.i-val{font-size:.9rem;color:var(--text);line-height:1.6}
+.i-val a{color:var(--red)}
+.hrs-h{font-family:"Oswald",sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin:24px 0 9px}
+.h-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:.87rem}
+.h-row .d{font-weight:600;color:var(--text)}.h-row .t{color:var(--muted)}
+.map-frame{width:100%;height:240px;overflow:hidden;border:1px solid var(--border);margin-bottom:8px}
+.map-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.map-btn{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;background:var(--navy);color:#fff;font-family:"Oswald",sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .15s;cursor:pointer}
+.map-btn:hover{background:var(--navy2)}
+.dir-box{margin-top:11px;background:var(--off);border:1px solid var(--border);padding:17px 19px}
+.dir-h{font-family:"Oswald",sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);margin-bottom:9px}
+.dir-row{font-size:.85rem;color:var(--muted);margin-bottom:5px;line-height:1.6}
+.dir-row strong{color:var(--navy)}
+
+/* ─── FORM ─── */
+.form{display:flex;flex-direction:column;gap:13px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-family:"Oswald",sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy)}
+.fg input,.fg select,.fg textarea{border:1px solid var(--border);padding:10px 12px;font-family:"Open Sans",sans-serif;font-size:.9rem;outline:none;transition:border .15s;width:100%;background:#fff}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--navy)}
+.fg textarea{resize:vertical}
+
+/* ─── RESTORATION ─── */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:26px;padding-top:22px;border-top:1px solid var(--border)}
+.sk{font-family:"Oswald",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.sv{font-size:.87rem;font-weight:600;color:var(--navy)}
+.aside-stack{display:flex;flex-direction:column}
+.aside{padding:22px;border:1px solid var(--border);margin-top:-1px}
+.aside-label{font-family:"Oswald",sans-serif;font-size:.61rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.aside-quote{font-family:Georgia,serif;font-size:1.02rem;font-style:italic;line-height:1.6;color:var(--navy)}
+.aside p{font-size:.86rem;line-height:1.75;color:var(--muted)}
+.aside.dark{background:var(--navy);border-color:var(--navy)}
+.aside.dark .aside-label{color:rgba(255,255,255,.37)}
+.aside.dark p{color:rgba(255,255,255,.47)}
+
+/* ─── STORE ─── */
+.store-tags{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 30px}
+.stag{font-family:"Oswald",sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);border:1px solid var(--border);padding:6px 12px;background:var(--off)}
+.store-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.sc{background:#fff;padding:24px 20px}
+.sc h4{font-family:"Oswald",sans-serif;font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--navy);margin-bottom:7px}
+.sc p{font-size:.84rem;line-height:1.75;color:var(--muted)}
+
+/* ─── FOOTER ─── */
+footer{background:var(--navy)}
+.ft-grid{max-width:1280px;margin:0 auto;padding:52px 32px 36px;display:grid;grid-template-columns:1fr 1fr;gap:36px;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-name{font-family:"Oswald",sans-serif;font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:.04em}
+.ft-tag{font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-top:3px}
+.ft-brand p{font-size:.8rem;color:rgba(255,255,255,.32);margin-top:13px;line-height:1.7}
+.ft-phone{display:block;margin-top:11px;font-family:"Oswald",sans-serif;font-size:1rem;font-weight:600;color:#fff}
+.ft-col-head{font-family:"Oswald",sans-serif;font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:13px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-col ul a{font-size:.81rem;color:rgba(255,255,255,.4);transition:color .15s;cursor:pointer}
+.ft-col ul a:hover{color:#fff}
+.ft-info{font-size:.8rem;color:rgba(255,255,255,.37);line-height:1.65;margin-bottom:5px}
+.ft-info a{color:rgba(255,255,255,.37);transition:color .15s}
+.ft-info a:hover{color:#fff}
+.ft-bottom{max-width:1280px;margin:0 auto;padding:13px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.ft-bottom span,.ft-bottom a{font-size:.68rem;color:rgba(255,255,255,.2)}
+.ft-bottom a:hover{color:rgba(255,255,255,.55);cursor:pointer}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1040px){
+  .nav-menu,.nav-cta{display:none}
+  .burger{display:block}
+  .tiles{grid-template-columns:1fr 1fr}
+  .about-grid,.ad-strip,.two-col,.ft-grid{grid-template-columns:1fr}
+  .about-photo,.ad-photo{height:280px}
+  .about-text,.ad-text{padding:36px 28px}
+  .why-strip{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .svc-grid,.rental-grid,.store-cards{grid-template-columns:1fr 1fr}
+  .pg-img img{width:100%;height:auto;max-height:340px;object-fit:cover;object-position:center 35%;display:block}
+  .pg-masthead-inner{grid-template-columns:1fr;padding:24px 20px}
+  .pg-masthead-title{border-right:none;border-bottom:3px solid #111;padding-right:0;padding-bottom:16px}
+  .pg-masthead-desc{padding-left:0;padding-top:16px}
+  .wrap{padding:0 20px}
+  .sec{padding:44px 0}
+  .hero-bar{padding:20px 20px}
+  .ft-grid{padding:36px 20px 28px;grid-template-columns:1fr 1fr}
+  .ft-bottom{padding:12px 20px}
+}
+@media(max-width:600px){
+  .tiles,.svc-grid,.rental-grid,.store-cards{grid-template-columns:1fr}
+  .why-strip{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .f-row{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr}
+  .pg-img img{width:100%;height:340px;object-fit:cover;object-position:center 35%;display:block}
+  .two-col{grid-template-columns:1fr;gap:32px}
+}
+
+    /* ── INVENTORY PAGE ── */
+    .inv-layout{display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:start}
+    .inv-sidebar{border:1px solid var(--border);background:#fff;position:sticky;top:90px}
+    .inv-filter-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);font-family:"Oswald",sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+    .inv-clear{font-size:.7rem;color:var(--red);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+    .inv-clear:hover{text-decoration:underline}
+    .inv-filter-group{padding:14px 16px;border-bottom:1px solid var(--border)}
+    .inv-filter-title{font-family:"Oswald",sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-bottom:10px}
+    .inv-check{display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--muted);margin-bottom:7px;cursor:pointer}
+    .inv-check:last-child{margin-bottom:0}
+    .inv-check input{accent-color:var(--red);cursor:pointer;width:14px;height:14px}
+    .inv-toolbar{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:24px;flex-wrap:wrap;gap:10px}
+    .inv-count{font-size:.82rem;color:var(--muted)}
+    .inv-sort{display:flex;align-items:center}
+    .inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .inv-card{border:1px solid var(--border);overflow:hidden;background:#fff;transition:box-shadow .2s;display:flex;flex-direction:column}
+    .inv-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.1)}
+    .inv-card-img{position:relative;height:185px;overflow:hidden;flex-shrink:0}
+    .inv-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .inv-card:hover .inv-card-img img{transform:scale(1.04)}
+    .inv-badge{position:absolute;top:10px;left:10px;font-family:"Oswald",sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;z-index:1}
+    .inv-badge.new{background:var(--navy);color:#fff}
+    .inv-badge.used{background:var(--gold);color:#fff}
+    .inv-badge.classic{background:var(--red);color:#fff}
+    .inv-badge.on-order{background:rgba(0,0,0,.6);color:#fff;left:auto;right:10px}
+    .inv-card-body{padding:16px;display:flex;flex-direction:column;gap:4px;flex:1}
+    .inv-card-year{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .inv-card-name{font-family:"Oswald",sans-serif;font-size:1.05rem;font-weight:700;color:var(--navy);letter-spacing:.02em;line-height:1.2}
+    .inv-card-make{font-size:.78rem;color:var(--muted);margin-bottom:6px}
+    .inv-card-specs{display:grid;grid-template-columns:1fr 1fr;gap:3px 8px;padding:10px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:8px}
+    .inv-spec{display:flex;justify-content:space-between;font-size:.75rem}
+    .inv-spec span:first-child{color:var(--muted)}
+    .inv-spec span:last-child{color:var(--navy);font-weight:600}
+    .inv-card-price{font-family:"Oswald",sans-serif;font-size:1.3rem;font-weight:700;color:var(--red);line-height:1}
+    .inv-card-status{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--muted);margin-top:2px}
+    .inv-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .inv-dot.green{background:#2ecc71}
+    .inv-dot.orange{background:#e67e22}
+    .inv-card-actions{display:flex;gap:8px;margin-top:auto;padding-top:12px}
+    .inv-card-actions .btn{flex:1;text-align:center;font-size:.72rem;padding:9px 8px}
+    @media(max-width:1024px){
+      .inv-layout{grid-template-columns:1fr}
+      .inv-sidebar{position:static}
+      .inv-filter-group{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+      .inv-filter-title{grid-column:1/-1}
+      .inv-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      .inv-grid{grid-template-columns:1fr}
+    }
+
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="go('home')">
+      <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;display:block">
+      <span class="logo-tagline">Serving the<br>Inland Waterway<br>Since 1938</span>
+    </div>
+    <button class="burger" onclick="mobToggle()">&#9776;</button>
+    <ul class="nav-menu">
+      <li><a id="n-home"        onclick="go('home')">Home</a></li>
+      <li><a id="n-services"    onclick="go('services')">Services</a></li>
+      <li><a id="n-rentals"     onclick="go('rentals')">Rentals</a></li>
+      <li><a id="n-inventory"   onclick="go('inventory')">Inventory</a></li>
+      <li><a id="n-restoration" onclick="go('restoration')">Restoration</a></li>
+      <li><a id="n-store"       onclick="go('store')">Ship Store</a></li>
+      <li><a id="n-contact"     onclick="go('contact')">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="go('contact')">Get In Touch</button>
+  </div>
+</nav>
+<div class="mob-menu" id="mob">
+  <a onclick="go('home')">Home</a>
+  <a onclick="go('services')">Services</a>
+  <a onclick="go('rentals')">Rentals</a>
+  <a onclick="go('inventory')">Inventory</a>
+  <a onclick="go('restoration')">Restoration</a>
+  <a onclick="go('store')">Ship Store</a>
+  <a onclick="go('contact')">Contact</a>
+</div>
+
+<!-- ════════════ HOME ════════════ -->
+<div class="pg on" id="pg-home">
+
+  <!-- Hero: slides fill the screen. Text lives in the opaque bar BELOW. -->
+  <div class="hero">
+    <div class="hero-slides">
+      
+      <div class="hero-slide"    id="hs0"><img src="images/hero_action.jpg" alt="Boat racing at Howe Marine on the Indian River" style="width:100%;height:auto;display:block"></div>
+    <div class="hero-slide" id="hs1"><img src="images/hero_party.jpg" alt="Family enjoying a sunset pontoon cruise on the Indian River" style="width:100%;height:auto;display:block"></div>
+      <div class="hero-dots">
+        <div class="hdot on" onclick="setSlide(0)"></div>
+        <div class="hdot"    onclick="setSlide(1)"></div>
+      </div>
+    </div>
+    <!-- Solid navy bar — a flex sibling of the slides, not an overlay -->
+    <div class="hero-bar">
+      <div class="hero-bar-left">
+        <div class="hero-bar-tag">Indian River, Michigan &nbsp;&mdash;&nbsp; Est. 1938</div>
+        <h1>Your Home on the Inland Waterway</h1>
+        <p>Full-service marina since 1938 &mdash; slips, storage, rentals, engine repair, and wooden boat restoration. Just off I&#8209;75 at Exit 310.</p>
+      </div>
+      <div class="hero-bar-right">
+        <button class="btn red" onclick="go('services')">Our Services</button>
+        <button class="btn outline-w" onclick="go('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Tiles: photo box on top, text box below — never mixed -->
+  <div class="tiles">
+    <div class="tile" onclick="go('services')">
+      <div class="tile-photo"><img src="images/tile_service.jpg" alt="Howe Marine engine service department" style="width:100%;height:185px;display:block"></div>
+      <div class="tile-text">
+        <div class="tile-category">Factory Authorized</div>
+        <div class="tile-name">Engine Service &amp; Repair</div>
+        <div class="tile-link">Learn More &rarr;</div>
+      </div>
+    </div>
+    <div class="tile" onclick="go('rentals')">
+      <div class="tile-photo"><img src="images/tile_rentals.jpg" alt="Family on a blue Tahoe pontoon boat" style="width:100%;height:185px;display:block"></div>
+      <div class="tile-text">
+        <div class="tile-category">Pontoons, Runabouts &amp; More</div>
+        <div class="tile-name">Boat Rentals</div>
+        <div class="tile-link">Learn More &rarr;</div>
+      </div>
+    </div>
+    <div class="tile" onclick="go('services')">
+      <div class="tile-photo"><img src="images/tile_slips.jpg" alt="Boats in winter storage" style="width:100%;height:185px;display:block"></div>
+      <div class="tile-text">
+        <div class="tile-category">Covered &amp; Open</div>
+        <div class="tile-name">Slips &amp; Storage</div>
+        <div class="tile-link">Learn More &rarr;</div>
+      </div>
+    </div>
+    <div class="tile" onclick="go('restoration')">
+      <div class="tile-photo"><img src="images/tile_restore.jpg" alt="Restoring a Hacker-Craft classic wooden boat" style="width:100%;height:185px;display:block"></div>
+      <div class="tile-text">
+        <div class="tile-category">Chris Craft Specialists</div>
+        <div class="tile-name">Wood Boat Restoration</div>
+        <div class="tile-link">Learn More &rarr;</div>
+      </div>
+    </div>
+    <div class="tile" onclick="go('store')">
+      <div class="tile-photo"><img src="images/tile_store.jpg" alt="Howe Marine Ship Store"></div>
+      <div class="tile-text">
+        <div class="tile-category">Parts, Gear &amp; Supplies</div>
+        <div class="tile-name">The Ship Store</div>
+        <div class="tile-link">Learn More &rarr;</div>
+      </div>
+    </div>
+    <div class="tile" onclick="go('contact')">
+      <div class="tile-photo"><img src="images/tile_marina.jpg" alt="Boats docked at Howe Marine" style="width:100%;height:185px;display:block"></div>
+      <div class="tile-text">
+        <div class="tile-category">I&#8209;75 Exit 310</div>
+        <div class="tile-name">Visit the Marina</div>
+        <div class="tile-link">Get Directions &rarr;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="about-grid">
+    <div class="about-photo"><img src="images/about_dock.jpg" alt="Sunset at the Howe Marine dock on the Indian River" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block"></div>
+    <div class="about-text">
+      <span class="label gold">Our Story</span>
+      <h2>Serving the Inland Waterway Since 1938</h2>
+      <p>Howe Marine sits directly on the Indian River between Burt and Mullett Lakes — the heart of Michigan's famous Inland Waterway. For over eight decades we've been the trusted stop for Northern Michigan boaters.</p>
+      <p>Covered and open slips up to 38&prime;, indoor and outdoor storage, pontoon rentals, factory-authorized engine repair, gas dock, deep-water launch ramp, and a fully stocked Ship Store.</p>
+      <div class="btns" style="margin-top:8px">
+        <button class="btn red" onclick="go('services')">Our Services</button>
+        <button class="btn outline-w" onclick="go('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why -->
+  <div class="why-strip">
+    <div class="why-item"><div class="why-icon">&#9875;</div><h3>86+ Years</h3><p>Family-owned since 1938. Nobody knows the Inland Waterway like we do.</p></div>
+    <div class="why-item"><div class="why-icon">&#128295;</div><h3>Factory Certified</h3><p>Authorized for Evinrude, Mercury, MerCruiser, Volvo Penta, and more.</p></div>
+    <div class="why-item"><div class="why-icon">&#128205;</div><h3>Prime Location</h3><p>Right on the Indian River — off I-75 at Exit 310. Easy in, easy out.</p></div>
+    <div class="why-item"><div class="why-icon">&#128676;</div><h3>Truly Full Service</h3><p>Fuel stop to full restoration — one marina for everything your boat needs.</p></div>
+  </div>
+
+  <!-- Brands -->
+  <div class="brands-bar">
+    <div class="brands-label">Factory Authorized Service For</div>
+    <div style="display:flex;justify-content:center;align-items:center;padding:8px 0">
+      <img src="images/src_108.png" alt="Brand logos" style="max-width:900px;width:100%;height:auto;display:block">
+    </div>
+  </div>
+
+  <!-- Ad strip -->
+  <div class="ad-strip">
+    <div class="ad-photo"><img src="images/ad_graphic.jpg" alt="Howe Marine advertisement"></div>
+    <div class="ad-text">
+      <span class="label gold">Factory Authorized Dealer</span>
+      <h2>Certified for the Brands You Trust</h2>
+      <p>Master-certified technicians factory trained for the industry's most trusted names. Pontoon rentals, boats &amp; motors, wooden boats, rec fuel, service, slips, and storage — all in one place.</p>
+      <div class="chips">
+        <span class="chip">Evinrude</span><span class="chip">Mercury</span><span class="chip">MerCruiser</span>
+        <span class="chip">Volvo Penta</span><span class="chip">ShoreStation</span><span class="chip">ShoreLand&rsquo;r</span>
+      </div>
+      <div class="btns" style="margin-top:6px">
+        <button class="btn white" onclick="go('services')">View All Services &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-bar">
+    <div class="cta-inner">
+      <div><h2>Ready to Get on the Water?</h2><p>Open Memorial Day through Labor Day, 7 days a week.</p></div>
+      <div class="btns">
+        <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+        <button class="btn outline-w" onclick="go('contact')">Get Directions</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- YouTube Video Section -->
+  <div style="background:var(--navy);padding:56px 0 0">
+    <div class="wrap" style="text-align:center;margin-bottom:32px">
+      <span class="label gold" style="display:inline-block;margin-bottom:10px">Watch</span>
+      <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:clamp(1.6rem,2.5vw,2.4rem)">Howe Marine on the Inland Waterway</h2>
+      <p style="font-size:.93rem;color:rgba(255,255,255,.5);margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto">See why boaters have been coming to Howe Marine since 1938.</p>
+    </div>
+    <div style="position:relative;width:100%;max-width:960px;margin:0 auto;padding:0 32px 56px">
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden">
+        <iframe
+          src="https://www.youtube.com/embed/nJ8M8kpH4vo"
+          title="Howe Marine — Indian River, Michigan"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <img src="images/src_103.png" alt="Howe Marine" style="height:52px;width:auto;display:block;filter:brightness(0) invert(1)">
+      <p>Full-service marina on the Indian River between Burt and Mullett Lakes. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+      <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+    </div>
+    
+    
+    <div class="ft-col">
+      <div class="ft-col-head">Contact</div>
+      <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+      <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+      <div class="ft-info"><a href="/cdn-cgi/l/email-protection#254d4a52404844574c4b40654248444c490b464a48"><span class="__cf_email__" data-cfemail="462e2931232b27342f282306212b272f2a6825292b">[email&#160;protected]</span></a></div>
+      <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+    <span><a onclick="go('contact')">Contact</a> &nbsp;&middot;&nbsp; <a onclick="go('services')">Services</a> &nbsp;&middot;&nbsp; <a href="http://www.howemarine.com" target="_blank">howemarine.com</a></span>
+  </div>
+</footer>
+</div>
+
+<!-- ════════════ SERVICES ════════════ -->
+<div class="pg" id="pg-services">
+  <div style="width:100%;overflow:hidden;border-bottom:4px solid #111"><img src="images/services_banner.jpg" alt="Howe Marine — Evinrude engine service" style="width:100%;height:auto;display:block;"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="margin-bottom:8px">What We Offer</span>
+        <h1>Marina Services</h1>
+      </div>
+      <div class="pg-masthead-desc">
+        <p>Factory-authorized service for the brands you trust — from a quick tune-up to full engine rebuilds. We carry the most highly trained and certified technicians in Northern Michigan.</p>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="svc-grid">
+        <div class="svc-card" onclick="go('service-slips')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/ph_slips.jpg" alt="Boat slips at Howe Marine" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">01</div>
+            <div class="svc-name">Boat Slips</div>
+            <div class="svc-desc">Seasonal covered and open slips for vessels up to 38 feet. Short-term and full-season options right on the Indian River.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+        <div class="svc-card" onclick="go('service-repair')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/ph_repair.jpg" alt="Howe Marine technician servicing engine" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">02</div>
+            <div class="svc-name">Engine Repair</div>
+            <div class="svc-desc">Factory-trained master technicians for Evinrude, Mercury/MerCruiser, and Volvo-Penta. Inboard, outboard, and stern drive.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+        <div class="svc-card" onclick="go('service-storage')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/tile_marina.jpg" alt="Boat storage at Howe Marine" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">03</div>
+            <div class="svc-name">Boat Storage</div>
+            <div class="svc-desc">Indoor and outdoor options for short and long-term. Safe and secure whether you're away for a weekend or the full off-season.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+        <div class="svc-card" onclick="go('service-winterizing')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/tile_marina.jpg" alt="Boat winterizing service" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">04</div>
+            <div class="svc-name">Winterizing</div>
+            <div class="svc-desc">Full winterization to properly prepare your boat for cold-weather storage — at our facility or yours.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+        <div class="svc-card" onclick="go('service-concierge')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/tile_marina.jpg" alt="Concierge boat service" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">05</div>
+            <div class="svc-name">Concierge Service</div>
+            <div class="svc-desc">We launch, clean, fuel, and stage your boat so it's ready when you arrive for vacation. Rest easy.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+        <div class="svc-card" onclick="go('service-cleaning')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/ph_cleaning.jpg" alt="Boat cleaning at Howe Marine dock" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">06</div>
+            <div class="svc-name">Boat Cleaning</div>
+            <div class="svc-desc">Full detailing with carpet cleaning, vinyl and leather treatments. Sparkling clean for you and your guests.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+        <div class="svc-card" onclick="go('service-gas')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/ph_gas.jpg" alt="Gas dock at Howe Marine" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">07</div>
+            <div class="svc-name">Gas Dock</div>
+            <div class="svc-desc">Premium rec gas and 90-octane available right on the water, 7 days a week during peak season.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+        <div class="svc-card" onclick="go('service-launch')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/tile_marina.jpg" alt="Boat launch ramp" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">08</div>
+            <div class="svc-name">Boat Launch</div>
+            <div class="svc-desc">Deep-water launch ramp with trailer parking on site. Quick and easy access to the Indian River.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+        <div class="svc-card" onclick="go('service-restrooms')" style="cursor:pointer;padding:0;overflow:hidden">
+          <div style="height:220px;overflow:hidden;flex-shrink:0"><img src="images/tile_marina.jpg" alt="Marina restrooms and showers" style="width:100%;height:220px;display:block">
+          </div>
+          <div style="padding:18px 20px">
+            <div class="svc-num">09</div>
+            <div class="svc-name">Restrooms &amp; Showers</div>
+            <div class="svc-desc">Clean, well-maintained facilities for slip holders and visiting boaters.</div>
+            <div style="font-family:Oswald,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:10px">Learn More &rarr;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="overflow:hidden;border-top:1px solid var(--border)"><img src="images/src_105.jpg" alt="Aerial view of Howe Marine" style="width:100%;height:320px;object-fit:cover;object-position:center 28%;display:block"></div>
+  <div class="brands-bar" style="border-top:none">
+    <div class="brands-label">Factory Authorized Service For</div>
+    <div class="brands-list"><span class="brand">Evinrude</span><span class="brand">Mercury</span><span class="brand">MerCruiser</span><span class="brand">Volvo Penta</span><span class="brand">Johnson</span><span class="brand">OMC Cobra</span><span class="brand">ShoreStation</span><span class="brand">ShoreLand&rsquo;r</span></div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner"><div><h2>Questions About Our Services?</h2><p>Call us or stop by — we're happy to help.</p></div><div class="btns"><a href="tel:2312389371" class="btn white">(231) 238-9371</a><button class="btn outline-w" onclick="go('contact')">Contact Page</button></div></div></div>
+  <footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <img src="images/src_103.png" alt="Howe Marine" style="height:52px;width:auto;display:block;filter:brightness(0) invert(1)">
+      <p>Full-service marina on the Indian River between Burt and Mullett Lakes. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+      <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+    </div>
+    
+    
+    <div class="ft-col">
+      <div class="ft-col-head">Contact</div>
+      <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+      <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+      <div class="ft-info"><a href="/cdn-cgi/l/email-protection#4820273f2d25293a21262d082f25292124662b2725"><span class="__cf_email__" data-cfemail="f79f9880929a96859e9992b7909a969e9bd994989a">[email&#160;protected]</span></a></div>
+      <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+    <span><a onclick="go('contact')">Contact</a> &nbsp;&middot;&nbsp; <a onclick="go('services')">Services</a> &nbsp;&middot;&nbsp; <a href="http://www.howemarine.com" target="_blank">howemarine.com</a></span>
+  </div>
+</footer>
+</div>
+
+<!-- ════════════ RENTALS ════════════ -->
+
+<!-- ════ SERVICE: BOAT SLIPS ════ -->
+<div class="pg" id="pg-service-slips">
+  <div class="pg-img"><img src="images/src_106.jpg" alt="Boat Slips &amp; Docking at Howe Marine" style="object-fit:cover;object-position:center center"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Boat Slips &amp; Docking</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Short-term and full-season covered and open slips for vessels up to 38 feet, right on the Indian River.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Boat Slips &amp; Docking</h2>
+          <p class="body" style="margin-bottom:18px">Short-term and full-season covered and open slips for vessels up to 38 feet, right on the Indian River.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Covered and open slips available</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Vessels up to 38 feet</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Short-term and seasonal options</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Right on the Indian River</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Gas dock on site</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Deep-water access</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ════ SERVICE: ENGINE REPAIR ════ -->
+<div class="pg" id="pg-service-repair">
+  <div class="pg-img"><img src="images/src_110.jpg" alt="Howe Marine certified technician working on outboard engine" style="width:100%;height:340px;object-fit:cover;object-position:center 30%;display:block"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Engine Service &amp; Repair</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Factory-authorized master technicians for Evinrude, Mercury/MerCruiser, and Volvo-Penta. Full inboard, outboard, and stern drive capabilities.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Engine Service &amp; Repair</h2>
+          <p class="body" style="margin-bottom:18px">Factory-authorized master technicians for Evinrude, Mercury/MerCruiser, and Volvo-Penta. Full inboard, outboard, and stern drive capabilities.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Evinrude factory authorized</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Mercury / MerCruiser certified</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Volvo-Penta certified</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Inboard, outboard &amp; stern drive</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Large parts inventory on hand</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Most makes and models serviced</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ════ SERVICE: BOAT STORAGE ════ -->
+<div class="pg" id="pg-service-storage">
+  <div class="pg-img"><img src="images/src_104.jpg" alt="Boat Storage at Howe Marine" style="object-fit:cover;object-position:center center"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Boat Storage</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Indoor and outdoor storage options for short and long-term. Your boat stays safe and secure whether you're away for a weekend or the entire off-season.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Boat Storage</h2>
+          <p class="body" style="margin-bottom:18px">Indoor and outdoor storage options for short and long-term. Your boat stays safe and secure whether you're away for a weekend or the entire off-season.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Indoor and outdoor options</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Short-term and long-term available</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Secure facility</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Convenient access</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Seasonal and year-round options</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Contact us for current rates</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ════ SERVICE: WINTERIZING ════ -->
+<div class="pg" id="pg-service-winterizing">
+  <div class="pg-img"><img src="images/src_104.jpg" alt="Winterizing at Howe Marine" style="object-fit:cover;object-position:center center"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Winterizing</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Full winterization service to properly prepare your boat for cold-weather storage. We come to your location or handle everything at our facility.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Winterizing</h2>
+          <p class="body" style="margin-bottom:18px">Full winterization service to properly prepare your boat for cold-weather storage. We come to your location or handle everything at our facility.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Full winterization service</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>At our facility or yours</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Engine fogging and flush</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Fuel stabilization</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Battery maintenance</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Covers and shrink-wrapping available</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ════ SERVICE: CONCIERGE SERVICE ════ -->
+<div class="pg" id="pg-service-concierge">
+  <div class="pg-img"><img src="images/src_104.jpg" alt="Boat Concierge Service at Howe Marine" style="object-fit:cover;object-position:center center"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Boat Concierge Service</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Rest easy knowing your boat will be ready when you arrive for vacation. We'll launch it, clean it, fuel it, and have it waiting at the dock — or deliver it to you.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Boat Concierge Service</h2>
+          <p class="body" style="margin-bottom:18px">Rest easy knowing your boat will be ready when you arrive for vacation. We'll launch it, clean it, fuel it, and have it waiting at the dock — or deliver it to you.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Boat launch included</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Pre-arrival cleaning</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Fueled and ready to go</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Delivered to your dock</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Seasonal packages available</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Perfect for vacation properties</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ════ SERVICE: BOAT CLEANING ════ -->
+<div class="pg" id="pg-service-cleaning">
+  <div class="pg-img"><img src="images/src_110.jpg" alt="Howe Marine staff detailing a pontoon at the dock" style="width:100%;height:340px;object-fit:cover;object-position:center 30%;display:block"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Boat Cleaning &amp; Detailing</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Full detailing including carpet cleaning, vinyl and leather treatments. Leave your boat sparkling clean and ready for you and your guests.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Boat Cleaning &amp; Detailing</h2>
+          <p class="body" style="margin-bottom:18px">Full detailing including carpet cleaning, vinyl and leather treatments. Leave your boat sparkling clean and ready for you and your guests.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Full interior and exterior detail</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Carpet cleaning</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Vinyl treatment</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Leather conditioning</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Hull cleaning and polish</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Available as a standalone or add-on service</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ════ SERVICE: GAS DOCK ════ -->
+<div class="pg" id="pg-service-gas">
+  <div class="pg-img"><img src="images/src_110.jpg" alt="Gas dock — recreational fuel pumps at Howe Marine" style="width:100%;height:340px;object-fit:cover;object-position:center 30%;display:block"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Gas Dock &amp; Fuel</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Premium rec gas and 90-octane available right on the water, 7 days a week during peak season. No need to haul your boat to a gas station.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Gas Dock &amp; Fuel</h2>
+          <p class="body" style="margin-bottom:18px">Premium rec gas and 90-octane available right on the water, 7 days a week during peak season. No need to haul your boat to a gas station.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Premium rec gas available</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>90-octane available</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Open 7 days peak season</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>8:30 AM – 6:30 PM peak hours</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>On the water — no hauling needed</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Quick and convenient</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ════ SERVICE: BOAT LAUNCH ════ -->
+<div class="pg" id="pg-service-launch">
+  <div class="pg-img"><img src="images/src_104.jpg" alt="Deep-Water Boat Launch at Howe Marine" style="object-fit:cover;object-position:center center"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Deep-Water Boat Launch</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Our deep-water launch ramp makes getting on the water quick and easy. Trailer parking available on site.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Deep-Water Boat Launch</h2>
+          <p class="body" style="margin-bottom:18px">Our deep-water launch ramp makes getting on the water quick and easy. Trailer parking available on site.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Deep-water launch ramp</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Trailer parking on site</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Easy access to Indian River</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Open during marina hours</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Connects to Inland Waterway</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Suitable for most boat sizes</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ════ SERVICE: RESTROOMS &AMP; SHOWERS ════ -->
+<div class="pg" id="pg-service-restrooms">
+  <div class="pg-img"><img src="images/src_104.jpg" alt="Restrooms &amp; Shower Facilities at Howe Marine" style="object-fit:cover;object-position:center center"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Marina Services</span>
+        <h1>Restrooms &amp; Shower Facilities</h1>
+      </div>
+      <div class="pg-masthead-desc"><p>Clean, well-maintained restroom and shower facilities available for slip holders and visiting boaters.</p></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">What&rsquo;s Included</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Restrooms &amp; Shower Facilities</h2>
+          <p class="body" style="margin-bottom:18px">Clean, well-maintained restroom and shower facilities available for slip holders and visiting boaters.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Clean and well-maintained</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Available to slip holders</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Open to visiting boaters</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Showers available</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Open during marina hours</div><div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span>Located on site</div></div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Get Started</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:12px">Ready to Book?</h2>
+          <p style="font-size:.87rem;line-height:1.75;color:rgba(255,255,255,.5);margin-bottom:22px">Give us a call or stop by the marina. Our staff is happy to answer questions and get you set up.</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+            <a href="mailto:howemarine@gmail.com" style="font-size:.82rem;color:rgba(255,255,255,.45);margin-top:6px">howemarine@gmail.com</a>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7">3312 Nabanois Trail<br>Indian River, MI 49749<br>I-75 at Exit 310</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Questions? Give Us a Call.</h2><p>We&rsquo;re happy to help with any questions about our services.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('services')">&larr; Back to Services</button>
+    </div>
+  </div></div>
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('services')">&larr; Back to Services</a></span>
+    </div>
+  </footer>
+</div>
+<div class="pg" id="pg-rentals">
+  <div style="width:100%;overflow:hidden;border-bottom:4px solid #111"><img src="images/pontoon_dock.jpg" alt="Family enjoying a sunset pontoon ride on the Indian River" style="width:100%;height:auto;display:block;"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="margin-bottom:8px">Get on the Water</span>
+        <h1>Boat Rentals</h1>
+      </div>
+      <div class="pg-masthead-desc">
+        <p>Explore the Indian River and Michigan's Inland Waterway. Half-day, full-day, or weekly options available. No experience necessary — we'll get you set up and on your way.</p>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="rental-grid" style="grid-template-columns:1fr 1fr">
+
+        <!-- Pontoon Boats card -->
+        <div class="rcard" onclick="go('rental-pontoon')" style="cursor:pointer">
+          <div class="rcard-img"><img src="images/rcard_pontoon.jpg" alt="Tahoe pontoon boat on the water"></div>
+          <div class="rcard-body">
+            <div class="rcard-name">Pontoon Boats</div>
+            <p class="rcard-desc">Ideal for groups and families. Stable, spacious, and easy to operate on the Inland Waterway. Perfect for a relaxed day on the water.</p>
+            <div style="margin-top:12px"><span class="btn red" style="font-size:.74rem;padding:9px 18px;display:inline-block">View Details &rarr;</span></div>
+          </div>
+        </div>
+
+        <!-- Center Console card -->
+        <div class="rcard" onclick="go('rental-console')" style="cursor:pointer">
+          <div class="rcard-img"><img src="images/rcard_pontoon2.jpg" alt="Boston Whaler center console on trailer"></div>
+          <div class="rcard-body">
+            <div class="rcard-name">Center Console</div>
+            <p class="rcard-desc">Fast, versatile, and easy to handle. Great for fishing, cruising the Indian River, or exploring Burt and Mullett Lake.</p>
+            <div style="margin-top:12px"><span class="btn red" style="font-size:.74rem;padding:9px 18px;display:inline-block">View Details &rarr;</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="sec sm bg-off bordered">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:14px">Good to Know</span>
+          <h2 class="sec-h" style="margin-bottom:18px">Rental Information</h2>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+            <li style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Valid driver's license required for motorized watercraft</li>
+            <li style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Life jackets provided for all passengers</li>
+            <li style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Half-day and full-day rentals available</li>
+            <li style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Reservations recommended during peak season</li>
+            <li style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Renters must be at least 18 years old</li>
+            <li style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Weekly rates may be available — ask us</li>
+          </ul>
+          <div class="btns" style="margin-top:22px"><button class="btn red" onclick="go('contact')">Inquire About Rentals</button></div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Where You'll Explore</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:clamp(1.4rem,2vw,1.9rem);margin-bottom:14px">The Inland Waterway</h2>
+          <p style="font-size:.88rem;line-height:1.8;color:rgba(255,255,255,.5);font-weight:300">The Indian River connects Burt Lake and Mullett Lake as part of Michigan's famous Inland Waterway — over 38 miles of navigable lakes and rivers. One of the most scenic boating destinations in the Midwest.</p>
+          <div style="margin-top:18px;border:1px solid rgba(255,255,255,.15);overflow:hidden">
+            <img src="images/src_101.jpg" alt="Map of Michigan's Inland Waterway showing Burt Lake, Mullett Lake, Indian River, and surrounding area" style="width:100%;height:auto;display:block">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.09);margin-top:22px">
+            <div style="background:rgba(255,255,255,.05);padding:16px 18px"><div style="font-family:Oswald,sans-serif;font-size:1.7rem;font-weight:700;color:#fff">38+</div><div style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:3px">Miles of Waterway</div></div>
+            <div style="background:var(--red);padding:16px 18px"><div style="font-family:Oswald,sans-serif;font-size:1.7rem;font-weight:700;color:#fff">5</div><div style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:3px">Connected Lakes</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner"><div><h2>Ready to Book?</h2><p>Call us or stop by — we'll get you on the water.</p></div><a href="tel:2312389371" class="btn white">(231) 238-9371</a></div></div>
+  <footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <img src="images/src_103.png" alt="Howe Marine" style="height:52px;width:auto;display:block;filter:brightness(0) invert(1)">
+      <p>Full-service marina on the Indian River between Burt and Mullett Lakes. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+      <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+    </div>
+    
+    
+    <div class="ft-col">
+      <div class="ft-col-head">Contact</div>
+      <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+      <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+      <div class="ft-info"><a href="/cdn-cgi/l/email-protection#4820273f2d25293a21262d082f25292124662b2725"><span class="__cf_email__" data-cfemail="a3cbccd4c6cec2d1cacdc6e3c4cec2cacf8dc0ccce">[email&#160;protected]</span></a></div>
+      <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+    <span><a onclick="go('contact')">Contact</a> &nbsp;&middot;&nbsp; <a onclick="go('services')">Services</a> &nbsp;&middot;&nbsp; <a href="http://www.howemarine.com" target="_blank">howemarine.com</a></span>
+  </div>
+</footer>
+</div>
+
+
+<!-- ════════════ INVENTORY ════════════ -->
+
+<!-- ════════════ RENTAL: PONTOON ════════════ -->
+<div class="pg" id="pg-rental-pontoon">
+  <div class="pg-img"><img src="images/src_102.jpg" alt="Tahoe pontoon boat on the water" style="object-position:center 40%"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Boat Rentals</span>
+        <h1>Pontoon Boats</h1>
+      </div>
+      <div class="pg-masthead-desc">
+        <p>Our pontoon boats are perfect for families and groups. Spacious, stable, and easy to operate — ideal for a relaxed day exploring the Indian River and the Inland Waterway.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">About This Rental</span>
+          <h2 class="sec-h" style="margin-bottom:16px">Relax on the Water</h2>
+          <p class="body" style="margin-bottom:11px">Our pontoon boats comfortably seat up to 10 passengers and are perfect for everything from leisurely cruises to swimming trips on the Inland Waterway. No boating experience required &mdash; we&rsquo;ll walk you through everything before you head out.</p>
+          <p class="body">Access to over 38 miles of connected lakes and rivers, including Burt Lake and Mullett Lake, from our dock on the Indian River.</p>
+          <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Seats up to 10 passengers</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Life jackets provided for all passengers</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Half-day and full-day rentals available</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Valid driver&rsquo;s license required</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Renters must be at least 18 years old</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Reservations recommended in peak season</div>
+          </div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Rental Rates</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:6px">Pricing</h2>
+          <p style="font-size:.87rem;line-height:1.7;color:rgba(255,255,255,.5);margin-bottom:20px">Rates vary by season. Contact us for current pricing and availability.</p>
+          <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:16px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;justify-content:space-between;font-size:.88rem;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)">
+              <span style="color:rgba(255,255,255,.6)">Half Day (4 hrs)</span>
+              <span style="color:#fff;font-weight:600">Call for pricing</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:.88rem;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)">
+              <span style="color:rgba(255,255,255,.6)">Full Day (8 hrs)</span>
+              <span style="color:#fff;font-weight:600">Call for pricing</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:.88rem">
+              <span style="color:rgba(255,255,255,.6)">Weekly Rate</span>
+              <span style="color:#fff;font-weight:600">Call for pricing</span>
+            </div>
+          </div>
+          <a href="tel:2312389371" class="btn white" style="margin-top:24px;display:inline-block">(231) 238-9371</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Ready to Book?</h2><p>Call us or stop by &mdash; we&rsquo;ll get you on the water.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('rentals')">&larr; Back to Rentals</button>
+    </div>
+  </div></div>
+
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('rentals')">&larr; Back to Rentals</a></span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ════════════ RENTAL: CENTER CONSOLE ════════════ -->
+<div class="pg" id="pg-rental-console">
+  <div class="pg-img"><img src="images/src_102.jpg" alt="Boston Whaler center console boat on trailer"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Boat Rentals</span>
+        <h1>Center Console</h1>
+      </div>
+      <div class="pg-masthead-desc">
+        <p>Versatile and capable, our center console boats are great for fishing, cruising, or just getting out on the water fast. Easy to handle for all skill levels.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">About This Rental</span>
+          <h2 class="sec-h" style="margin-bottom:16px">Built for the Water</h2>
+          <p class="body" style="margin-bottom:11px">Our center console rentals are ideal for anglers and boaters who want a responsive, open boat with great visibility and easy access all around. Perfect for fishing trips on Burt Lake, Mullett Lake, or exploring the Indian River.</p>
+          <p class="body">These boats handle the Inland Waterway beautifully and are easy enough for first-time renters to operate confidently.</p>
+          <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Open layout with 360&deg; fishability</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Life jackets provided for all passengers</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Half-day and full-day rentals available</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Valid driver&rsquo;s license required</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Renters must be at least 18 years old</div>
+            <div style="display:flex;gap:10px;font-size:.9rem;color:var(--muted)"><span style="color:var(--red);font-weight:700;flex-shrink:0">&#10003;</span> Great for fishing, tubing, and cruising</div>
+          </div>
+          <div class="btns" style="margin-top:24px">
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+            <button class="btn outline" onclick="go('contact')">Send a Message</button>
+          </div>
+        </div>
+        <div style="background:var(--navy);padding:36px 32px">
+          <span class="label gold" style="display:inline-block;margin-bottom:10px">Rental Rates</span>
+          <h2 style="font-family:Oswald,sans-serif;font-weight:700;color:#fff;font-size:1.6rem;margin-bottom:6px">Pricing</h2>
+          <p style="font-size:.87rem;line-height:1.7;color:rgba(255,255,255,.5);margin-bottom:20px">Rates vary by season. Contact us for current pricing and availability.</p>
+          <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:16px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;justify-content:space-between;font-size:.88rem;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)">
+              <span style="color:rgba(255,255,255,.6)">Half Day (4 hrs)</span>
+              <span style="color:#fff;font-weight:600">Call for pricing</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:.88rem;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)">
+              <span style="color:rgba(255,255,255,.6)">Full Day (8 hrs)</span>
+              <span style="color:#fff;font-weight:600">Call for pricing</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:.88rem">
+              <span style="color:rgba(255,255,255,.6)">Weekly Rate</span>
+              <span style="color:#fff;font-weight:600">Call for pricing</span>
+            </div>
+          </div>
+          <a href="tel:2312389371" class="btn white" style="margin-top:24px;display:inline-block">(231) 238-9371</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Ready to Book?</h2><p>Call us or stop by &mdash; we&rsquo;ll get you on the water.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('rentals')">&larr; Back to Rentals</button>
+    </div>
+  </div></div>
+
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="mailto:howemarine@gmail.com">howemarine@gmail.com</a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('rentals')">&larr; Back to Rentals</a></span>
+    </div>
+  </footer>
+</div>
+
+<div class="pg" id="pg-inventory">
+  <div class="pg-img" style="background:#0b4a8c"><img src="images/inventory_banner.jpg" alt="Howe Marine — Boats For Sale" style="width:100%;height:auto;display:block;object-fit:contain;max-height:340px"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">For Sale</span>
+        <h1>Boat Inventory</h1>
+      </div>
+      <div class="pg-masthead-desc">
+        <p>Browse our current selection of new and pre-owned boats and motors. Inventory changes regularly &mdash; call us at (231)&nbsp;238-9371 or stop by for the most current availability and pricing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+
+      <!-- Filter + results layout -->
+      <div class="inv-layout">
+
+        <!-- ── SIDEBAR FILTERS ── -->
+        <aside class="inv-sidebar">
+          <div class="inv-filter-head">
+            <span>Filter By</span>
+            <button onclick="clearFilters()" class="inv-clear">Clear All</button>
+          </div>
+
+          <div class="inv-filter-group">
+            <div class="inv-filter-title">Condition</div>
+            <label class="inv-check"><input type="checkbox" value="New"      onchange="filterInv()"> New</label>
+            <label class="inv-check"><input type="checkbox" value="Used"     onchange="filterInv()"> Pre-Owned</label>
+            <label class="inv-check"><input type="checkbox" value="Classic"  onchange="filterInv()"> Classic / Restored</label>
+          </div>
+
+          <div class="inv-filter-group">
+            <div class="inv-filter-title">Type</div>
+            <label class="inv-check"><input type="checkbox" value="Pontoon"  onchange="filterInv()"> Pontoon</label>
+            <label class="inv-check"><input type="checkbox" value="Runabout" onchange="filterInv()"> Runabout</label>
+            <label class="inv-check"><input type="checkbox" value="Fishing"  onchange="filterInv()"> Fishing Boat</label>
+            <label class="inv-check"><input type="checkbox" value="Wooden"   onchange="filterInv()"> Wooden / Classic</label>
+            <label class="inv-check"><input type="checkbox" value="Motor"    onchange="filterInv()"> Motor</label>
+          </div>
+
+          <div class="inv-filter-group">
+            <div class="inv-filter-title">Price Range</div>
+            <label class="inv-check"><input type="checkbox" value="under10"  onchange="filterInv()"> Under $10,000</label>
+            <label class="inv-check"><input type="checkbox" value="10to25"   onchange="filterInv()"> $10,000 – $25,000</label>
+            <label class="inv-check"><input type="checkbox" value="25to50"   onchange="filterInv()"> $25,000 – $50,000</label>
+            <label class="inv-check"><input type="checkbox" value="over50"   onchange="filterInv()"> $50,000+</label>
+          </div>
+
+          <div class="inv-filter-group" style="border-bottom:none">
+            <div class="inv-filter-title">Availability</div>
+            <label class="inv-check"><input type="checkbox" value="InStock"  onchange="filterInv()"> In Stock</label>
+            <label class="inv-check"><input type="checkbox" value="OnOrder"  onchange="filterInv()"> On Order</label>
+          </div>
+        </aside>
+
+        <!-- ── RESULTS ── -->
+        <div class="inv-results">
+
+          <!-- Toolbar -->
+          <div class="inv-toolbar">
+            <div class="inv-count" id="inv-count">Showing all listings</div>
+            <div class="inv-sort">
+              <label style="font-size:.78rem;color:var(--muted);margin-right:6px">Sort by</label>
+              <select onchange="sortInv(this.value)" style="font-family:inherit;font-size:.78rem;border:1px solid var(--border);padding:5px 10px;outline:none;background:#fff;color:var(--navy)">
+                <option value="default">Best Match</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="year-desc">Year: Newest First</option>
+                <option value="year-asc">Year: Oldest First</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Listing cards grid -->
+          <div class="inv-grid" id="inv-grid">
+
+            <!-- Card 1 -->
+            <div class="inv-card" data-condition="Used" data-type="Pontoon" data-price="25to50" data-availability="InStock" data-year="2019" data-pricenum="28500">
+              <div class="inv-card-img">
+                <img src="images/src_105.jpg" alt="2019 Pontoon Boat">
+                <span class="inv-badge used">Pre-Owned</span>
+              </div>
+              <div class="inv-card-body">
+                <div class="inv-card-year">2019</div>
+                <div class="inv-card-name">SunTracker Party Barge 22 XP3</div>
+                <div class="inv-card-make">Sun Tracker &nbsp;&middot;&nbsp; Pontoon</div>
+                <div class="inv-card-specs">
+                  <div class="inv-spec"><span>Length</span><span>22 ft.</span></div>
+                  <div class="inv-spec"><span>Engine</span><span>90 HP Mercury</span></div>
+                  <div class="inv-spec"><span>Hours</span><span>187 hrs</span></div>
+                  <div class="inv-spec"><span>Color</span><span>Tan / Brown</span></div>
+                </div>
+                <div class="inv-card-price">$28,500</div>
+                <div class="inv-card-status"><span class="inv-dot green"></span> In Stock</div>
+                <div class="inv-card-actions">
+                  <button class="btn red" style="font-size:.74rem;padding:9px 14px" onclick="openInquiry('2019 SunTracker Party Barge 22 XP3')">Request Info</button>
+                  <a href="tel:2312389371" class="btn outline" style="font-size:.74rem;padding:9px 14px">Call Us</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="inv-card" data-condition="Used" data-type="Runabout" data-price="10to25" data-availability="InStock" data-year="2008" data-pricenum="15500">
+              <div class="inv-card-img">
+                <img src="images/src_105.jpg" alt="2008 Four Winns H200">
+                <span class="inv-badge used">Pre-Owned</span>
+              </div>
+              <div class="inv-card-body">
+                <div class="inv-card-year">2008</div>
+                <div class="inv-card-name">H200</div>
+                <div class="inv-card-make">Four Winns &nbsp;&middot;&nbsp; Runabout</div>
+                <div class="inv-card-specs">
+                  <div class="inv-spec"><span>Length</span><span>19 ft. 8 in.</span></div>
+                  <div class="inv-spec"><span>Beam</span><span>8 ft. 4 in.</span></div>
+                  <div class="inv-spec"><span>Hours</span><span>297.5 hrs</span></div>
+                  <div class="inv-spec"><span>Color</span><span>White</span></div>
+                </div>
+                <div class="inv-card-price">$15,500</div>
+                <div class="inv-card-status"><span class="inv-dot green"></span> In Stock</div>
+                <div class="inv-card-actions">
+                  <button class="btn red" style="font-size:.74rem;padding:9px 14px" onclick="openInquiry('2008 Four Winns H200')">Request Info</button>
+                  <a href="tel:2312389371" class="btn outline" style="font-size:.74rem;padding:9px 14px">Call Us</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="inv-card" data-condition="Classic" data-type="Wooden" data-price="25to50" data-availability="InStock" data-year="1959" data-pricenum="18500">
+              <div class="inv-card-img">
+                <img src="images/src_104.jpg" alt="1959 Chris Craft 17 Sportsman">
+                <span class="inv-badge classic">Classic</span>
+              </div>
+              <div class="inv-card-body">
+                <div class="inv-card-year">1959</div>
+                <div class="inv-card-name">17&prime; Sportsman</div>
+                <div class="inv-card-make">Chris Craft &nbsp;&middot;&nbsp; Classic Wooden</div>
+                <div class="inv-card-specs">
+                  <div class="inv-spec"><span>Length</span><span>17 ft.</span></div>
+                  <div class="inv-spec"><span>Engine</span><span>283ci V8 185hp</span></div>
+                  <div class="inv-spec"><span>Hull</span><span>Mahogany Wood</span></div>
+                  <div class="inv-spec"><span>Status</span><span>Fully Restored</span></div>
+                </div>
+                <div class="inv-card-price">$18,500</div>
+                <div class="inv-card-status"><span class="inv-dot green"></span> In Stock</div>
+                <div class="inv-card-actions">
+                  <button class="btn red" style="font-size:.74rem;padding:9px 14px" onclick="openInquiry('1959 Chris Craft 17 Sportsman')">Request Info</button>
+                  <a href="tel:2312389371" class="btn outline" style="font-size:.74rem;padding:9px 14px">Call Us</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="inv-card" data-condition="Classic" data-type="Wooden" data-price="25to50" data-availability="InStock" data-year="1950" data-pricenum="18500">
+              <div class="inv-card-img">
+                <img src="images/src_105.jpg" alt="1950 Chris Craft 18 Riviera">
+                <span class="inv-badge classic">Classic</span>
+              </div>
+              <div class="inv-card-body">
+                <div class="inv-card-year">1950</div>
+                <div class="inv-card-name">18&prime; Riviera</div>
+                <div class="inv-card-make">Chris Craft &nbsp;&middot;&nbsp; Classic Wooden</div>
+                <div class="inv-card-specs">
+                  <div class="inv-spec"><span>Length</span><span>18 ft.</span></div>
+                  <div class="inv-spec"><span>Engine</span><span>KBL 131hp</span></div>
+                  <div class="inv-spec"><span>Hull</span><span>Mahogany Wood</span></div>
+                  <div class="inv-spec"><span>Status</span><span>Fully Restored</span></div>
+                </div>
+                <div class="inv-card-price">$18,500</div>
+                <div class="inv-card-status"><span class="inv-dot green"></span> In Stock</div>
+                <div class="inv-card-actions">
+                  <button class="btn red" style="font-size:.74rem;padding:9px 14px" onclick="openInquiry('1950 Chris Craft 18 Riviera')">Request Info</button>
+                  <a href="tel:2312389371" class="btn outline" style="font-size:.74rem;padding:9px 14px">Call Us</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="inv-card" data-condition="Used" data-type="Motor" data-price="under10" data-availability="InStock" data-year="2017" data-pricenum="3200">
+              <div class="inv-card-img">
+                <img src="images/src_104.jpg" alt="2017 Mercury 60hp Outboard">
+                <span class="inv-badge used">Pre-Owned</span>
+              </div>
+              <div class="inv-card-body">
+                <div class="inv-card-year">2017</div>
+                <div class="inv-card-name">60hp FourStroke EFI</div>
+                <div class="inv-card-make">Mercury &nbsp;&middot;&nbsp; Outboard Motor</div>
+                <div class="inv-card-specs">
+                  <div class="inv-spec"><span>HP</span><span>60 hp</span></div>
+                  <div class="inv-spec"><span>Cylinders</span><span>3</span></div>
+                  <div class="inv-spec"><span>Fuel</span><span>EFI / Gas</span></div>
+                  <div class="inv-spec"><span>Condition</span><span>Serviced</span></div>
+                </div>
+                <div class="inv-card-price">$3,200</div>
+                <div class="inv-card-status"><span class="inv-dot green"></span> In Stock</div>
+                <div class="inv-card-actions">
+                  <button class="btn red" style="font-size:.74rem;padding:9px 14px" onclick="openInquiry('2017 Mercury 60hp FourStroke')">Request Info</button>
+                  <a href="tel:2312389371" class="btn outline" style="font-size:.74rem;padding:9px 14px">Call Us</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="inv-card" data-condition="New" data-type="Pontoon" data-price="over50" data-availability="OnOrder" data-year="2025" data-pricenum="62000">
+              <div class="inv-card-img">
+                <img src="images/src_104.jpg" alt="2025 Pontoon">
+                <span class="inv-badge new">New</span>
+                <span class="inv-badge on-order" style="top:auto;bottom:10px">On Order</span>
+              </div>
+              <div class="inv-card-body">
+                <div class="inv-card-year">2025</div>
+                <div class="inv-card-name">SL 22 Cruise</div>
+                <div class="inv-card-make">Bennington &nbsp;&middot;&nbsp; Pontoon</div>
+                <div class="inv-card-specs">
+                  <div class="inv-spec"><span>Length</span><span>22 ft.</span></div>
+                  <div class="inv-spec"><span>Engine</span><span>150 HP Evinrude</span></div>
+                  <div class="inv-spec"><span>Capacity</span><span>12 passengers</span></div>
+                  <div class="inv-spec"><span>Color</span><span>Navy / Silver</span></div>
+                </div>
+                <div class="inv-card-price">$62,000</div>
+                <div class="inv-card-status"><span class="inv-dot orange"></span> On Order</div>
+                <div class="inv-card-actions">
+                  <button class="btn red" style="font-size:.74rem;padding:9px 14px" onclick="openInquiry('2025 Bennington SL 22 Cruise')">Request Info</button>
+                  <a href="tel:2312389371" class="btn outline" style="font-size:.74rem;padding:9px 14px">Call Us</a>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /inv-grid -->
+
+          <!-- No results message -->
+          <div id="inv-empty" style="display:none;text-align:center;padding:64px 24px;border:1px solid var(--border)">
+            <div style="font-size:2.5rem;margin-bottom:12px">&#128690;</div>
+            <h3 class="sec-h" style="font-size:1.4rem;margin-bottom:8px">No listings match your filters</h3>
+            <p class="sec-sub" style="margin:0 auto 20px">Try adjusting your filters or call us — we may have something coming in that fits your needs.</p>
+            <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+          </div>
+
+        </div><!-- /inv-results -->
+      </div><!-- /inv-layout -->
+
+    </div><!-- /wrap -->
+  </div><!-- /sec -->
+
+  <!-- Inquiry modal -->
+  <div id="inv-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center">
+    <div style="background:#fff;max-width:520px;width:90%;padding:36px;position:relative">
+      <button onclick="closeInquiry()" style="position:absolute;top:14px;right:16px;font-size:1.4rem;background:none;border:none;cursor:pointer;color:var(--muted)">&times;</button>
+      <span class="label" style="display:inline-block;margin-bottom:8px">Get More Information</span>
+      <h2 class="sec-h" style="font-size:1.5rem;margin-bottom:4px">Request Info</h2>
+      <p id="modal-item-name" style="font-size:.88rem;color:var(--muted);margin-bottom:20px"></p>
+      <form class="form" onsubmit="submitInquiry(event)">
+        <div class="f-row">
+          <div class="fg"><label>First Name</label><input type="text" required></div>
+          <div class="fg"><label>Last Name</label><input type="text" required></div>
+        </div>
+        <div class="fg"><label>Email Address</label><input type="email" required></div>
+        <div class="fg"><label>Phone Number</label><input type="tel"></div>
+        <div class="fg"><label>Message (optional)</label><textarea rows="3"></textarea></div>
+        <button type="submit" class="btn red">Send Inquiry &rarr;</button>
+        <p id="modal-ok" style="display:none;font-size:.84rem;color:var(--navy);font-weight:600;margin-top:6px">&#10003; Sent! We&rsquo;ll be in touch shortly.</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="cta-bar"><div class="cta-inner">
+    <div><h2>Don&rsquo;t See What You&rsquo;re Looking For?</h2><p>Call us &mdash; inventory changes regularly and we may have exactly what you need coming in.</p></div>
+    <div class="btns">
+      <a href="tel:2312389371" class="btn white">(231) 238-9371</a>
+      <button class="btn outline-w" onclick="go('contact')">Send a Message</button>
+    </div>
+  </div></div>
+
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River between Burt and Mullett Lakes. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      
+      
+      <div class="ft-col"><div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="/cdn-cgi/l/email-protection#e78f8890828a86958e8982a7808a868e8bc984888a"><span class="__cf_email__" data-cfemail="8ae2e5fdefe7ebf8e3e4efcaede7ebe3e6a4e9e5e7">[email&#160;protected]</span></a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span><a onclick="go('contact')">Contact</a> &nbsp;&middot;&nbsp; <a onclick="go('services')">Services</a> &nbsp;&middot;&nbsp; <a href="http://www.howemarine.com" target="_blank">howemarine.com</a></span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ════════════ RESTORATION ════════════ -->
+<div class="pg" id="pg-restoration">
+  <div class="pg-img"><img src="images/restoration_header.jpg" alt="Classic wooden boats in the Howe Marine restoration showroom" style="width:100%;height:340px;object-fit:cover;object-position:center 50%;display:block"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="margin-bottom:8px">Heritage Craftsmanship</span>
+        <h1>Wooden Boat Restoration</h1>
+      </div>
+      <div class="pg-masthead-desc">
+        <p>Expert restoration of antique and classic wooden watercraft. Skills that are increasingly rare — and skills our team has mastered over decades of working on the Inland Waterway.</p>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">Our Expertise</span>
+          <h2 class="sec-h" style="margin-bottom:16px">Bringing Classic Boats Back to Life</h2>
+          <p class="body" style="margin-bottom:11px">Howe Marine has a long and proud history with antique and classic wooden watercraft. Our technicians understand the unique demands of vintage engines and hulls that most modern shops cannot handle.</p>
+          <p class="body">Our team knows their way around flatheads, carburetors, and the woodworking techniques that keep these beauties on the water — and looking their best for decades to come.</p>
+          <div class="spec-grid">
+            <div><div class="sk">Specialty</div><div class="sv">Chris Craft &amp; Classics</div></div>
+            <div><div class="sk">Max Length</div><div class="sv">Up to 26 Feet</div></div>
+            <div><div class="sk">Engine Work</div><div class="sv">Flatheads &amp; Carburetors</div></div>
+            <div><div class="sk">Hull Work</div><div class="sv">Full &amp; Partial</div></div>
+            <div><div class="sk">Dealership</div><div class="sv">Authorized Classic Dealer</div></div>
+            <div><div class="sk">Inventory</div><div class="sv">Restored Classics For Sale</div></div>
+          </div>
+        </div>
+        <div class="aside-stack">
+          <div class="aside"><div class="aside-label">Our Philosophy</div><div class="aside-quote">"Skills that are hard to find in today's digitized world — our team knows their way around the classics."</div></div>
+          <div class="aside"><div class="aside-label">Chris Craft Specialists</div><p>We specialize in Chris Craft wooden boats and carry restored classics available for sale. These boats deserve to be on the water, not sitting in a garage.</p></div>
+          <div class="aside dark"><div class="aside-label">Request a Consultation</div><p>Bring your classic in and we'll assess what it needs. Honest, expert advice — no obligation.</p><a href="tel:2312389371" class="btn white" style="margin-top:14px;display:inline-block;font-size:.78rem;padding:10px 18px">(231) 238-9371</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-bar"><div class="cta-inner"><div><h2>Have a Classic That Needs Work?</h2><p>Call us to discuss your boat. We'll tell you honestly what it needs.</p></div><div class="btns"><a href="tel:2312389371" class="btn white">(231) 238-9371</a><button class="btn outline-w" onclick="go('contact')">Send a Message</button></div></div></div>
+  <footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <img src="images/src_103.png" alt="Howe Marine" style="height:52px;width:auto;display:block;filter:brightness(0) invert(1)">
+      <p>Full-service marina on the Indian River between Burt and Mullett Lakes. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+      <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+    </div>
+    
+    
+    <div class="ft-col">
+      <div class="ft-col-head">Contact</div>
+      <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+      <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+      <div class="ft-info"><a href="/cdn-cgi/l/email-protection#7e1611091b131f0c17101b3e19131f1712501d1113"><span class="__cf_email__" data-cfemail="2840475f4d45495a41464d684f45494144064b4745">[email&#160;protected]</span></a></div>
+      <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+    <span><a onclick="go('contact')">Contact</a> &nbsp;&middot;&nbsp; <a onclick="go('services')">Services</a> &nbsp;&middot;&nbsp; <a href="http://www.howemarine.com" target="_blank">howemarine.com</a></span>
+  </div>
+</footer>
+</div>
+
+<!-- ════════════ SHIP STORE ════════════ -->
+<div class="pg" id="pg-store">
+  <div style="width:100%;overflow:hidden;border-bottom:4px solid #111"><img src="images/store_banner.jpg" alt="Inside the Howe Marine Ship Store" style="width:100%;height:auto;display:block;"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="margin-bottom:8px">On-Site</span>
+        <h1>The Ship Store</h1>
+      </div>
+      <div class="pg-masthead-desc">
+        <p>Your perfect pit stop on the Indian River. Parts, hardware, motor oils, cold drinks, snacks, and Howe Marine souvenirs — everything you need on the water, all in one place.</p>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <span class="label" style="display:inline-block;margin-bottom:10px">What We Carry</span>
+      <h2 class="sec-h" style="margin-bottom:6px">Stocked for Lake Life</h2>
+      <p class="sec-sub" style="margin-bottom:0">Whether you're making a quick stop mid-ride or stocking up for a full day out, we have what you need.</p>
+      <div class="store-tags">
+        <span class="stag">Cold Drinks</span><span class="stag">Snacks &amp; Treats</span><span class="stag">Ice</span>
+        <span class="stag">Marine Hardware</span><span class="stag">Boating Accessories</span><span class="stag">Safety Equipment</span>
+        <span class="stag">Motor Oils &amp; Fluids</span><span class="stag">Souvenirs</span><span class="stag">Fishing Supplies</span>
+        <span class="stag">Lines &amp; Fenders</span><span class="stag">Cleaning Products</span><span class="stag">Apparel</span>
+      </div>
+      <div class="store-cards">
+        <div class="sc"><h4>Food &amp; Drink</h4><p>Cold beverages, snacks, ice cream, and quick bites to keep everyone fueled for the day.</p></div>
+        <div class="sc"><h4>Boating Essentials</h4><p>Lines, fenders, safety gear, marine hardware, motor oil — the things you actually need out there.</p></div>
+        <div class="sc"><h4>Souvenirs &amp; Gifts</h4><p>Hats, shirts, and gifts unique to Howe Marine. Take home a memory from the Indian River.</p></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Photo Gallery -->
+  <div class="sec" style="border-top:1px solid var(--border)">
+    <div class="wrap">
+      <span class="label" style="display:inline-block;margin-bottom:10px">Take a Look Inside</span>
+      <h2 class="sec-h" style="margin-bottom:24px">The Ship Store</h2>
+
+      <!-- Wide store shot full width -->
+      <div style="width:100%;height:400px;overflow:hidden;margin-bottom:3px;border-radius:0">
+        <img src="images/src_110.jpg" alt="Inside the Howe Marine Ship Store" style="width:100%;height:100%;object-fit:cover;object-position:center 30%">
+      </div>
+
+      <!-- Three photos in a row below -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:3px">
+        <div style="height:280px;overflow:hidden">
+          <img src="images/src_110.jpg" alt="Classic boat collectibles and gifts display" style="width:100%;height:100%;object-fit:cover;object-position:center center">
+        </div>
+        <div style="height:280px;overflow:hidden">
+          <img src="images/src_110.jpg" alt="Snacks and essentials at the Ship Store" style="width:100%;height:100%;object-fit:cover;object-position:center center">
+        </div>
+        <div style="height:280px;overflow:hidden">
+          <img src="images/src_110.jpg" alt="Marine parts and supplies at Howe Marine" style="width:100%;height:100%;object-fit:cover;object-position:center center">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cta-bar"><div class="cta-inner"><div><h2>Stop By Any Time</h2><p>Open during regular marina hours. Call ahead to confirm seasonal hours.</p></div><div class="btns"><button class="btn white" onclick="go('contact')">Hours &amp; Location</button><a href="tel:2312389371" class="btn outline-w">(231) 238-9371</a></div></div></div>
+  <footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <img src="images/src_103.png" alt="Howe Marine" style="height:52px;width:auto;display:block;filter:brightness(0) invert(1)">
+      <p>Full-service marina on the Indian River between Burt and Mullett Lakes. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+      <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+    </div>
+    
+    
+    <div class="ft-col">
+      <div class="ft-col-head">Contact</div>
+      <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+      <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+      <div class="ft-info"><a href="/cdn-cgi/l/email-protection#96fef9e1f3fbf7e4fff8f3d6f1fbf7fffab8f5f9fb"><span class="__cf_email__" data-cfemail="432b2c34262e22312a2d2603242e222a2f6d202c2e">[email&#160;protected]</span></a></div>
+      <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+    <span><a onclick="go('contact')">Contact</a> &nbsp;&middot;&nbsp; <a onclick="go('services')">Services</a> &nbsp;&middot;&nbsp; <a href="http://www.howemarine.com" target="_blank">howemarine.com</a></span>
+  </div>
+</footer>
+</div>
+
+<!-- ════════════ CONTACT ════════════ -->
+<div class="pg" id="pg-contact">
+  <div class="pg-img" style="background:#0b2545;display:flex;align-items:center;justify-content:center;"><img src="images/contact_sticker.jpg" alt="Howe Marine — Indian River, Michigan" style="max-height:340px;width:auto;max-width:100%;object-fit:contain;display:block;"></div>
+  <div class="pg-masthead">
+    <div class="pg-masthead-inner">
+      <div class="pg-masthead-title">
+        <span class="label" style="display:inline-block;margin-bottom:8px">Find Us</span>
+        <h1>Contact Howe Marine</h1>
+      </div>
+      <div class="pg-masthead-desc">
+        <p>Located at 3312 Nabanois Trail, Indian River, Michigan &mdash; just off I-75 at Exit 310, right on the Indian River. Call, email, or stop by any time.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:18px">Contact &amp; Hours</span>
+          <ul class="info-list">
+            <li class="i-row"><span class="i-key">Address</span><span class="i-val">3312 Nabanois Trail<br>Indian River, MI 49749</span></li>
+            <li class="i-row"><span class="i-key">Phone</span><span class="i-val"><a href="tel:2312389371">(231) 238-9371</a></span></li>
+            <li class="i-row"><span class="i-key">Email</span><span class="i-val"><a href="/cdn-cgi/l/email-protection#b8d0d7cfddd5d9cad1d6ddf8dfd5d9d1d496dbd7d5"><span class="__cf_email__" data-cfemail="aec6c1d9cbc3cfdcc7c0cbeec9c3cfc7c280cdc1c3">[email&#160;protected]</span></a></span></li>
+            <li class="i-row"><span class="i-key">Website</span><span class="i-val"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></span></li>
+            <li class="i-row"><span class="i-key">Highway</span><span class="i-val">I-75 at Exit 310</span></li>
+          </ul>
+          <div class="hrs-h">Seasonal Hours</div>
+          <div class="h-row"><span class="d">Memorial Day &ndash; Labor Day</span><span class="t">8:30 AM &ndash; 5:00 PM Daily</span></div>
+          <div class="h-row"><span class="d">Spring &amp; Fall (Mon&ndash;Fri)</span><span class="t">8:30 AM &ndash; 5:00 PM</span></div>
+          <div class="h-row"><span class="d">Gas Dock (Peak Season)</span><span class="t">8:30 AM &ndash; 6:30 PM</span></div>
+          <p style="font-size:.75rem;color:var(--muted);margin-top:9px;font-style:italic">Hours vary by season &mdash; call ahead to confirm.</p>
+        </div>
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:18px">Location</span>
+          <div class="map-frame" style="padding:0;overflow:hidden;border:1px solid var(--border)">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2862.5!2d-84.6076!3d45.4123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d39b2f3b2b2b2b3%3A0x1234567890abcdef!2s3312%20Nabanois%20Trail%2C%20Indian%20River%2C%20MI%2049749!5e0!3m2!1sen!2sus!4v1713100000000!5m2!1sen!2sus"
+            width="100%"
+            height="248"
+            style="border:0;display:block"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+          <a href="https://maps.google.com/?q=3312+Nabanois+Trail+Indian+River+MI+49749" target="_blank" class="map-btn">Open in Google Maps &#8599;</a>
+          <div class="dir-box">
+            <div class="dir-h">Directions</div>
+            <div class="dir-row"><strong>From the South:</strong> Take I-75 North to Exit 310. Turn left off the ramp.</div>
+            <div class="dir-row"><strong>From the North:</strong> Take I-75 South to Exit 310. Turn right off the ramp.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec bg-off bordered">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">Send a Message</span>
+          <h2 class="sec-h" style="margin-bottom:22px">We&rsquo;re Here to Help</h2>
+          <form class="form" onsubmit="fSubmit(event)">
+            <div class="f-row">
+              <div class="fg"><label>First Name</label><input type="text" required></div>
+              <div class="fg"><label>Last Name</label><input type="text" required></div>
+            </div>
+            <div class="fg"><label>Email Address</label><input type="email" required></div>
+            <div class="fg"><label>Phone Number</label><input type="tel"></div>
+            <div class="fg"><label>How Can We Help?</label>
+              <select>
+                <option>Slip or Docking</option>
+                <option>Engine Repair</option>
+                <option>Boat Storage</option>
+                <option>Boat Rental</option>
+                <option>Wooden Boat Restoration</option>
+                <option>Concierge Service</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg"><label>Message</label><textarea rows="4" required></textarea></div>
+            <button type="submit" class="btn red">Send Message &rarr;</button>
+            <p id="fok" style="display:none;font-size:.85rem;color:var(--navy);font-weight:600;margin-top:4px">&#10003; Thanks! We&rsquo;ll be in touch soon.</p>
+          </form>
+        </div>
+        <div>
+          <span class="label" style="display:inline-block;margin-bottom:12px">Prefer to Call?</span>
+          <h2 class="sec-h" style="margin-bottom:13px">We&rsquo;re Happy to Help</h2>
+          <p class="sec-sub" style="margin-bottom:22px">Our staff can assist with reservations, service quotes, slip availability, and any other marina questions.</p>
+          <a href="tel:2312389371" class="btn red">(231) 238-9371</a>
+          <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--border)">
+            <img src="images/src_102.jpg" alt="Howe Marine" style="max-width:250px;height:auto;object-fit:contain;border:1px solid var(--border)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="images/src_103.png" alt="Howe Marine" style="height:46px;width:auto;filter:brightness(0) invert(1)">
+        <p>Full-service marina on the Indian River between Burt and Mullett Lakes. Just off I-75 at Exit 310, Indian River, Michigan.</p>
+        <a href="tel:2312389371" class="ft-phone">(231) 238-9371</a>
+      </div>
+      
+      
+      <div class="ft-col">
+        <div class="ft-col-head">Contact</div>
+        <div class="ft-info">3312 Nabanois Trail<br>Indian River, MI 49749</div>
+        <div class="ft-info"><a href="tel:2312389371">(231) 238-9371</a></div>
+        <div class="ft-info"><a href="/cdn-cgi/l/email-protection#137b7c64767e72617a7d7653747e727a7f3d707c7e"><span class="__cf_email__" data-cfemail="d9b1b6aebcb4b8abb0b7bc99beb4b8b0b5f7bab6b4">[email&#160;protected]</span></a></div>
+        <div class="ft-info"><a href="http://www.howemarine.com" target="_blank">www.howemarine.com</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 Howe Marine &nbsp;&middot;&nbsp; Indian River, MI &nbsp;&middot;&nbsp; Est. 1938</span>
+      <span>
+        <a onclick="go('contact')">Contact</a> &nbsp;&middot;&nbsp;
+        <a onclick="go('services')">Services</a> &nbsp;&middot;&nbsp;
+        <a href="http://www.howemarine.com" target="_blank">howemarine.com</a>
+      </span>
+    </div>
+  </footer>
+</div>
+
+<script>
+const PAGES = ['home','services','service-slips','service-repair','service-storage','service-winterizing','service-concierge','service-cleaning','service-gas','service-launch','service-restrooms','rentals','rental-pontoon','rental-console','inventory','restoration','store','contact'];
+
+function go(id) {
+  PAGES.forEach(function(p) {
+    document.getElementById('pg-' + p).classList.toggle('on', p === id);
+    var n = document.getElementById('n-' + p);
+    if (n) n.classList.toggle('on', p === id);
+  });
+  document.getElementById('mob').classList.remove('open');
+  window.scrollTo(0, 0);
+}
+
+function mobToggle() {
+  document.getElementById('mob').classList.toggle('open');
+}
+
+function fSubmit(e) {
+  e.preventDefault();
+  document.getElementById('fok').style.display = 'block';
+  e.target.reset();
+}
+
+// Hero slideshow
+var si = 0;
+function setSlide(n) {
+  document.getElementById('hs' + si).classList.remove('on');
+  document.querySelectorAll('.hdot')[si].classList.remove('on');
+  si = n;
+  document.getElementById('hs' + si).classList.add('on');
+  document.querySelectorAll('.hdot')[si].classList.add('on');
+}
+setInterval(function() { setSlide((si + 1) % 2); }, 6000);
+
+// Inventory filtering
+function filterInv() {
+  var allChecked = Array.from(document.querySelectorAll('.inv-check input:checked')).map(function(c) { return c.value; });
+  var condVals  = ['New','Used','Classic'];
+  var typeVals  = ['Pontoon','Runabout','Fishing','Wooden','Motor'];
+  var priceVals = ['under10','10to25','25to50','over50'];
+  var availVals = ['InStock','OnOrder'];
+  var selCond  = allChecked.filter(function(v) { return condVals.indexOf(v)  > -1; });
+  var selType  = allChecked.filter(function(v) { return typeVals.indexOf(v)  > -1; });
+  var selPrice = allChecked.filter(function(v) { return priceVals.indexOf(v) > -1; });
+  var selAvail = allChecked.filter(function(v) { return availVals.indexOf(v) > -1; });
+  var cards = document.querySelectorAll('.inv-card');
+  var visible = 0;
+  cards.forEach(function(card) {
+    var ok = true;
+    if (selCond.length  && selCond.indexOf(card.dataset.condition)     === -1) ok = false;
+    if (selType.length  && selType.indexOf(card.dataset.type)          === -1) ok = false;
+    if (selPrice.length && selPrice.indexOf(card.dataset.price)        === -1) ok = false;
+    if (selAvail.length && selAvail.indexOf(card.dataset.availability) === -1) ok = false;
+    card.style.display = ok ? '' : 'none';
+    if (ok) visible++;
+  });
+  document.getElementById('inv-count').textContent = visible + ' listing' + (visible !== 1 ? 's' : '') + ' found';
+  document.getElementById('inv-empty').style.display = visible === 0 ? 'block' : 'none';
+}
+
+function clearFilters() {
+  document.querySelectorAll('.inv-check input').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('.inv-card').forEach(function(c) { c.style.display = ''; });
+  document.getElementById('inv-count').textContent = 'Showing all listings';
+  document.getElementById('inv-empty').style.display = 'none';
+}
+
+function sortInv(val) {
+  var grid = document.getElementById('inv-grid');
+  var cards = Array.from(grid.querySelectorAll('.inv-card'));
+  cards.sort(function(a, b) {
+    if (val === 'price-asc')  return parseInt(a.dataset.pricenum) - parseInt(b.dataset.pricenum);
+    if (val === 'price-desc') return parseInt(b.dataset.pricenum) - parseInt(a.dataset.pricenum);
+    if (val === 'year-desc')  return parseInt(b.dataset.year)     - parseInt(a.dataset.year);
+    if (val === 'year-asc')   return parseInt(a.dataset.year)     - parseInt(b.dataset.year);
+    return 0;
+  });
+  cards.forEach(function(c) { grid.appendChild(c); });
+}
+
+function openInquiry(itemName) {
+  document.getElementById('modal-item-name').textContent = itemName;
+  document.getElementById('modal-ok').style.display = 'none';
+  document.getElementById('inv-modal').style.display = 'flex';
+}
+function closeInquiry() {
+  document.getElementById('inv-modal').style.display = 'none';
+}
+function submitInquiry(e) {
+  e.preventDefault();
+  document.getElementById('modal-ok').style.display = 'block';
+  e.target.reset();
+  setTimeout(closeInquiry, 2500);
+}
+var modal = document.getElementById('inv-modal');
+if (modal) {
+  modal.addEventListener('click', function(e) {
+    if (e.target === this) closeInquiry();
+  });
+}
+</script>
+</body>
+</html>
